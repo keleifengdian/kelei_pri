@@ -2,11 +2,10 @@ from pysnmp.hlapi import *
 
 errorIndication, errorStatus, errorIndex, varBinds = next(
     getCmd(SnmpEngine(),
-           CommunityData('private'),
-           UdpTransportTarget(('187.79.197.198', 161)),
+           CommunityData('public', mpModel=0),
+           UdpTransportTarget(('192.168.16.128', 161)),
            ContextData(),
-           ObjectType(ObjectIdentity('1.3.6.1.2.1.1.1.0')),
-           ObjectType(ObjectIdentity('1.3.6.1.2.1.1.6.0')))
+           ObjectType(ObjectIdentity('SNMPv2-MIB', 'sysDescr', 0)))
 )
 
 if errorIndication:
